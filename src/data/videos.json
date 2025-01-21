@@ -5,7 +5,7 @@
       "description": "Learn essential leadership skills to excel in your role.",
       "videoUrl": "./videos/Whygoodleadersmakeyoufeelsafe.mp4", 
       "category": "Leadership",
-      "liked": 0,
+      "liked": 1,
       "bookmarked": 0
     },
     {
@@ -14,7 +14,7 @@
       "description": "Boost productivity with these time management techniques.",
       "videoUrl": "./videos/HowIManageMyTime.mp4", 
       "category": "Productivity",
-      "liked": 0,
+      "liked": 1,
       "bookmarked": 0
 
     },
@@ -37,6 +37,5 @@
       "category": "Education",
       "liked": 0,
       "bookmarked": 0
-
     }
   ]

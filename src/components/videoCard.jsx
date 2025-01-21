@@ -117,7 +117,7 @@ export default function VideoCard({ video, onVideoEnd }) {
           />
           {showControls && (
             <button
-              className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-black/70 border-none text-white text-2xl cursor-pointer rounded-full w-12 h-12 flex items-center justify-center"
+              className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 border-none text-white text-2xl cursor-pointer rounded-full w-12 h-12 flex items-center justify-center"
               onClick={togglePlayPause}
             >
               {isPlaying ? <FaPauseCircle size={52} style={{ opacity: 0.9 }} /> : <FaPlayCircle size={52} style={{ opacity: 0.9 }} />}
