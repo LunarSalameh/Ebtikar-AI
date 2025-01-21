@@ -8,11 +8,11 @@ import Sidebar from "./components/sidebar";
 function App() {
   return (
     <BrowserRouter>
-            <div className="flex gap-16">
-                <div>
+            <div className="flex">
+                <div className='dark:bg-dark-sideBarBg shadow-xl bg-light-sideBarBg  text-dark-sideBarText p-4 fixed top-0'>
                     <Sidebar />
                 </div>
-                <Routes>
+                <Routes> 
                     <Route path="/" element={<Home />} />
                     <Route path="/profile" element={<Profile />} />
                     <Route path="/search" element={<Search />} />

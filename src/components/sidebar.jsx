@@ -26,8 +26,7 @@ export default function Sidebar() {
 
     return (
         <section>
-            <div className="dark:bg-dark-sideBarBg shadow-xl bg-light-sideBarBg min-h-screen text-dark-sideBarText p-4">
-                <div className="flex flex-col gap-6 h-screen">
+                <div className="flex flex-col gap-6 h-screen ">
                     <a href="/">
                         <img src='./assets/logo.png' alt="Logo" className="w-48" />
                     </a>
@@ -65,7 +64,6 @@ export default function Sidebar() {
                         </div>
                     </div>
                 </div>
-            </div>
         </section>
     );
 }
