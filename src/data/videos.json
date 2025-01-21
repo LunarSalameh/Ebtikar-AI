@@ -26,7 +26,7 @@
       "videoUrl": "./videos/WhatIsICT.mp4",
       "category": "Technology",
       "liked": 0,
-      "bookmarked": 0
+      "bookmarked": 1
 
     },
     {
@@ -35,7 +35,7 @@
       "description": "Boost productivity with these time management techniques.",
       "videoUrl": "./videos/LetsTalkAboutEducation.mp4", 
       "category": "Education",
-      "liked": 0,
-      "bookmarked": 0
+      "liked": 1,
+      "bookmarked": 1
     }
   ]

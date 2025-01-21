@@ -23,35 +23,36 @@ export default function VideoCard({ video, onVideoEnd }) {
         setBookmark(!bookmark);
     }
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            videoRef.current.play();
-            setIsPlaying(true);
-          } else {
-            videoRef.current.pause();
-            setIsPlaying(false);
-          }
-        });
-      },
-      {
-        threshold: 0.5, 
+    useEffect(() => {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const videoElement = entry.target;
+              videoElement.src = videoElement.dataset.src;
+              videoElement.autoplay = true;
+              videoElement.play();
+              observer.unobserve(videoElement); // Stop observing once loaded
+            }
+          });
+        },
+        {
+          rootMargin: "0px",
+          threshold: 0.1, // Trigger when 10% of the video is visible
+        }
+      );
+  
+      const currentVideoRef = videoRef.current;
+      if (currentVideoRef) {
+        observer.observe(currentVideoRef);
       }
-    );
-
-    const currentContainerRef = containerRef.current;
-    if (currentContainerRef) {
-      observer.observe(currentContainerRef); 
-    }
-
-    return () => {
-      if (currentContainerRef) {
-        observer.unobserve(currentContainerRef);
-      }
-    };
-  }, []);
+  
+      return () => {
+        if (currentVideoRef) {
+          observer.unobserve(currentVideoRef);
+        }
+      };
+    }, []);
 
     const togglePlayPause = () => {
         if (videoRef.current.paused) {
@@ -106,20 +107,36 @@ export default function VideoCard({ video, onVideoEnd }) {
           className="rounded-xl h-full w-full overflow-hidden relative"
           onClick={handleVideoClick}
           onMouseLeave={handleMouseLeave}
+          tabIndex="0"
+          role="button"
+          aria-label="Video player"
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              handleVideoClick();
+            }
+          }}
         >
           <video
             ref={videoRef}
-            src={video.videoUrl}
+            data-src={video.videoUrl}
             muted={isMuted}
             loop={false}
             onTimeUpdate={handleTimeUpdate}
             onEnded={handleVideoEnd}
+            aria-label={`Video: ${video.title}`}
             className="h-full w-full object-cover"
           />
           {showControls && (
             <button
               className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 border-none text-white text-2xl cursor-pointer rounded-full w-12 h-12 flex items-center justify-center"
               onClick={togglePlayPause}
+              tabIndex="0"
+              aria-label={isPlaying ? "Pause video" : "Play video"} 
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  togglePlayPause();
+                }
+              }}
             >
               {isPlaying ? <FaPauseCircle size={52} style={{ opacity: 0.9 }} /> : <FaPlayCircle size={52} style={{ opacity: 0.9 }} />}
             </button>
@@ -133,6 +150,8 @@ export default function VideoCard({ video, onVideoEnd }) {
               max="100"
               value={progress}
               onChange={handleProgressChange}
+              tabIndex="0"
+               aria-label="Video progress"
               className="w-full cursor-pointer text-dark-accent"
             />
           </div>
@@ -157,7 +176,16 @@ export default function VideoCard({ video, onVideoEnd }) {
       <div className="flex flex-col gap-2 h-full pb-4 justify-end">
         {/* Like */}
         <div className="flex flex-col items-center">
-          <button className="p-2 bg-blue-500 text-white rounded-lg" onClick={handleLike}>
+          <button className="p-2 bg-blue-500 text-white rounded-lg" 
+                onClick={handleLike}
+                tabIndex="0"
+                aria-label={liked ? "Unlike video" : "Like video"}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    handleLike();
+                  }
+                }}
+                >
             <div className="bg-light-interaction rounded-full p-2">
               {liked ? <IoIosHeart size={30} color="black" /> : <IoIosHeartEmpty size={30} color="black" />}
             </div>
@@ -167,7 +195,16 @@ export default function VideoCard({ video, onVideoEnd }) {
 
         {/* Save */}
         <div className="flex flex-col items-center">
-          <button className="p-2 bg-blue-500 text-white rounded-lg" onClick={handleBookmark}>
+          <button className="p-2 bg-blue-500 text-white rounded-lg" 
+                onClick={handleBookmark}
+                tabIndex="0"
+                aria-label={bookmark ? "Remove from saved" : "Save video"}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    handleBookmark();
+                  }
+                }}
+                >
             <div className="bg-light-interaction rounded-full p-2">
               { bookmark ? <FaBookmark size={30} color="black" /> : <FaRegBookmark size={30} color="black" />}
             </div>
@@ -178,7 +215,7 @@ export default function VideoCard({ video, onVideoEnd }) {
         {/* Share */}
         <div className="flex flex-col items-center">
 
-          <button className="p-2 bg-blue-500 text-white rounded-lg" >
+          <button className="p-2 bg-blue-500 text-white rounded-lg" aria-label="Share video" tabIndex="0" >
             <div className="bg-light-interaction rounded-full p-2">
               <IoIosShareAlt size={30} color="black" />
             </div>

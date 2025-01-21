@@ -22,6 +22,8 @@ export default function Search() {
                         placeholder="Search ... "
                         className=" w-full p-2 rounded-full pl-12 pr-4 border-2 border-solid border-dark-accent"
                         value={searchValue}
+                        tabIndex="0"
+                         aria-label="search input"
                         onChange={(e) => setSearchValue(e.target.value)}
                     />
 
@@ -34,13 +36,30 @@ export default function Search() {
                             className="bg-[#D9D9D9] hover:bg-[#D9D9D9]/90  border-2 border-dark-accent text-light-accent py-1 px-4 rounded-full m-2"
                             value={category}
                             onClick={(e) => {setSelecterCategory(e.target.value); setSearchValue("");} }  
+                            tabIndex="0"
+                            aria-label="Filter by category"
+                            onKeyDown={(e) => {
+                                if (e.key === "Enter" || e.key === " ") {
+                                    setSelecterCategory(e.target.value); 
+                                    setSearchValue("");
+                                }
+                              }}
                             >
                                 {category}
                     </button>
                 ))}
                 {selecterCategory &&(
                     <div className="flex justify-end items-center ml-4">
-                        <TiDelete size={22} onClick={()=>setSelecterCategory("")}/>
+                        <TiDelete size={22} 
+                                onClick={()=>setSelecterCategory("")}
+                                tabIndex="0"
+                                aria-label="clear filter"
+                                onKeyDown={(e) => {
+                                    if (e.key === "Enter" || e.key === " ") {
+                                        setSelecterCategory("")
+                                    }
+                                }}
+                                />
                     </div>
                 )}
             </div>
@@ -48,7 +67,14 @@ export default function Search() {
 
             {/* show video card based on filter/search */}
             <div>
-               {/* {selecterCategory ? <VideoResult category={selecterCategory} search={searchValue} /> : <VideoResult search={searchValue} />} */}
+              
+                {selecterCategory ? (
+                    <h1>Category: {selecterCategory}</h1>
+                ) : searchValue ? (
+                    <h1>Search: {searchValue}</h1>
+                ) : (
+                    <h1>All Videos</h1>
+                )}
 
                <VideoResult category={selecterCategory} search={searchValue} />
             </div>
