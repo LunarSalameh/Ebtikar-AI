@@ -1,0 +1,37 @@
+[
+    {
+      "id": "101",
+      "fullName": "John Doe",
+      "profilePicture": "https://randomuser.me/api/portraits/men/1.jpg",
+      "savedVideosIDs": [],
+      "likedVideosIDs": []
+    },
+    {
+      "id": "102",
+      "fullName": "Jane Smith",
+      "profilePicture": "https://randomuser.me/api/portraits/women/2.jpg",
+      "savedVideosIDs": [],
+      "likedVideosIDs": []
+    },
+    {
+      "id": "103",
+      "fullName": "Alice Johnson",
+      "profilePicture": "https://randomuser.me/api/portraits/women/3.jpg",
+      "savedVideosIDs": [],
+      "likedVideosIDs": []
+    },
+    {
+      "id": "104",
+      "fullName": "Bob Brown",
+      "profilePicture": "https://randomuser.me/api/portraits/men/4.jpg",
+      "savedVideosIDs": [],
+      "likedVideosIDs": []
+    },
+    {
+      "id": "105",
+      "fullName": "Charlie Davis",
+      "profilePicture": "https://randomuser.me/api/portraits/men/5.jpg",
+      "savedVideosIDs": [],
+      "likedVideosIDs": []
+    }
+  ]

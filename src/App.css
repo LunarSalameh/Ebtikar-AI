@@ -2,3 +2,48 @@
   text-align: center;
 }
 
+#range1 {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  cursor: pointer;
+  outline: none;
+  overflow: hidden;
+  border-radius: 16px;
+}
+
+/* Track (WebKit) */
+#range1::-webkit-slider-runnable-track {
+  height: 6px;  
+  background: #ccc;
+  border-radius: 16px;
+}
+
+/* Track (Firefox) */
+#range1::-moz-range-track {
+  height: 6px;  
+  background: #ccc;
+  border-radius: 16px;
+}
+
+/* Thumb (WebKit) */
+#range1::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 6px;   
+  width: 12px;   
+  background-color: #409A91;
+  border-radius: 50%;
+  border: 2px solid #409A91;
+  box-shadow: -407px 0 0 400px #409A91; 
+}
+
+/* Thumb (Firefox) */
+#range1::-moz-range-thumb {
+  height: 6px;   
+  width: 12px;   
+  background-color: #fff;
+  border-radius: 50%;
+  border: 1px solid #409A91;
+  box-shadow: -407px 0 0 400px #409A91; 
+}
