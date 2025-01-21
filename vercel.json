@@ -1,0 +1,13 @@
+{
+    "headers": [
+      {
+        "source": "/(.*).mp4",
+        "headers": [
+          {
+            "key": "Content-Type",
+            "value": "video/mp4"
+          }
+        ]
+      }
+    ]
+  }

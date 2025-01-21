@@ -41,16 +41,17 @@ export default function VideoCard({ video, onVideoEnd }) {
       }
     );
 
-    if (containerRef.current) {
-      observer.observe(containerRef.current); 
+    const currentContainerRef = containerRef.current;
+    if (currentContainerRef) {
+      observer.observe(currentContainerRef); 
     }
 
-        return () => {
-        if (containerRef.current) {
-            observer.unobserve(containerRef.current);
-        }
-        };
-    }, []);
+    return () => {
+      if (currentContainerRef) {
+        observer.unobserve(currentContainerRef);
+      }
+    };
+  }, []);
 
     const togglePlayPause = () => {
         if (videoRef.current.paused) {
