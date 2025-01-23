@@ -8,7 +8,7 @@ export default function Search() {
 
     const [searchValue, setSearchValue] = useState("");
     const [selecterCategory, setSelecterCategory] = useState("");
-    const distinctCategories = [...new Set(videos.map(video => video.category))];
+    const distinctCategories = [...new Set(videos.videos.map(video => video.category))];
 
 
     return (

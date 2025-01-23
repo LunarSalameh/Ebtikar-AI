@@ -1,19 +1,40 @@
 import React, { useState, useEffect } from "react";
-import videos from "../data/videos.json";
+// import videos from "../data/videos.json";
 import { IoIosHeart } from "react-icons/io";
 
-export default function VideoResult({ category, search, filterType }) {
+export default function VideoResult({ category, search, id }) {
     const [filteredVideos, setFilteredVideos] = useState([]);
+    const [videos, setVideos] = useState([]);
+    
+    useEffect(() => {
+        const fetchVideos = async () => {
+          try {
+              const response = await fetch(`http://localhost:3001/videos`);
+              if (!response.ok) {
+                  throw new Error('Network response was not ok');
+              }
+              const data = await response.json();
+              setVideos(data);
+              console.log("Fetched videos:", data.videos);
+          } catch (error) {
+              console.error('Error fetching videos:', error);
+          }
+        };
+        
+        fetchVideos();
+    }, []);
 
     useEffect(() => {
         const filtered = videos.filter((video) => {
             const matchesCategory = category ? video.category === category : true;
             const matchesSearch = search ? video.title.toLowerCase().includes(search.toLowerCase()) : true;
-            const matchesFilterType = filterType === "liked" ? video.liked : filterType === "bookmarked" ? video.bookmarked : true;
-            return matchesCategory && matchesSearch && matchesFilterType;
+            const matchesId = id 
+            ? (Array.isArray(id) ? id.includes(video.id) : id === video.id) 
+            : true;
+            return matchesCategory && matchesSearch &&  matchesId;
         });
         setFilteredVideos(filtered);
-    }, [category, search, filterType]);
+    }, [category, search , id,videos]);
 
     return (
         <div>
@@ -26,8 +47,9 @@ export default function VideoResult({ category, search, filterType }) {
                                 controls={false}
                                 muted={true}
                                 src={video.videoUrl}
+                                type="video/mp4"
+                                
                                 onMouseEnter={e => {
-                                    e.target.currentTime = 0;
                                     e.target.play();
                                 }}
                                 onMouseLeave={e => {

@@ -1,19 +1,33 @@
-import React,{useState} from "react"
+import React,{useState, useEffect} from "react"
 import users from "../data/user.json"
 import { IoIosHeart  } from "react-icons/io";
 import { FaBookmark} from "react-icons/fa";
 import VideoResult from "../components/videoResult";
-import videos from "../data/videos.json";
-
+// import videos from "../data/videos.json";
+import { useParams } from "react-router-dom";
 
 export default function UserProfile () {
+    const { id } = useParams();
 
-    const [liked, setLiked] = useState(false)
-    const [bookmark, setBookmark] = useState(false)
-    const [filterType, setFilterType] = useState("liked");
+    const [liked, setLiked] = useState(false);
+    const [bookmark, setBookmark] = useState(false);
+  
+    const [user, setUser] = useState({});
     
-    const likedCount = videos.filter(video => video.liked).length;
-    const bookmarkedCount = videos.filter(video => video.bookmarked).length;
+    const [filterType, setFilterType] = useState("liked");
+  
+    useEffect(() => {
+      const fetchUser = async () => {
+        const response = await fetch(`http://localhost:3002/users/${id}`);
+        const data = await response.json();
+        setUser(data);
+      };
+  
+      fetchUser();
+    }, [id]);
+  
+    const likedCount = user.likedVideosIDs ? user.likedVideosIDs.length : 0;
+    const bookmarkedCount = user.savedVideosIDs ? user.savedVideosIDs.length : 0;
 
 
     return (
@@ -22,13 +36,13 @@ export default function UserProfile () {
             <div className="flex gap-6 flex-wrap px-8 py-2">
                 {/* profile picture */}
                 <div>
-                    <img src={users[0].profilePicture} alt="profile" className="w-48 h-48 rounded-full"/>
+                    <img src={user.profilePicture} alt="profile" className="w-48 h-48 rounded-full"/>
                 </div>
 
                 {/* details */}
                 {/* name */}
                 <div className="flex flex-col gap-5 items-start justify-center">
-                    <h1 className="font-semibold text-2xl">{users[0].fullName}</h1>
+                    <h1 className="font-semibold text-2xl">{user.fullName}</h1>
                     
                     {/* liked and watched # */}
                     <div className="flex gap-4">
@@ -63,7 +77,13 @@ export default function UserProfile () {
 
                     {/* videos */}
                     <div>
-                        <VideoResult filterType={filterType} />
+            {console.log(user.savedVideosIDs)}
+                        {liked ? 
+                            <VideoResult id={user.likedVideosIDs}/> 
+                            : bookmark ? <VideoResult id={user.savedVideosIDs} /> 
+                            : '' }
+
+                        {/* <VideoResult filterType={filterType} /> */}
                     </div>
                 </div>
         </div>
