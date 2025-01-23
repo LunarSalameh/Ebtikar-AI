@@ -40,8 +40,8 @@ export default function VideoResult({ category, search, id }) {
         <div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {filteredVideos.map((video, index) => (
-                    <div key={index} className="relative p-4 bg-light-cardBg dark:bg-dark-cardBg rounded-lg">
-                        <div className="relative flex justify-center w-72 h-72 rounded-lg overflow-hidden">
+                    <div key={index} className="relative p-4 rounded-lg">
+                        <div className="relative flex items-center justify-center w-72 h-72 max-sm:w-[14rem] max-sm:h-32 rounded-lg overflow-hidden">
                             <video
                                 className="object-cover w-full h-full transition-all duration-300 ease-in-out"
                                 controls={false}

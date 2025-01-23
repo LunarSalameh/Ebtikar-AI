@@ -7,7 +7,9 @@
       "savedVideosIDs": [
         "3"
       ],
-      "likedVideosIDs": []
+      "likedVideosIDs": [
+        "0"
+      ]
     },
     {
       "id": "2",
@@ -24,6 +26,7 @@
       "fullName": "Alice Johnson",
       "profilePicture": "https://randomuser.me/api/portraits/women/8.jpg",
       "savedVideosIDs": [
+        "1",
         "1"
       ],
       "likedVideosIDs": [
@@ -35,7 +38,9 @@
       "id": "4",
       "fullName": "Bob Brown",
       "profilePicture": "https://randomuser.me/api/portraits/men/4.jpg",
-      "savedVideosIDs": [],
+      "savedVideosIDs": [
+        "1"
+      ],
       "likedVideosIDs": [
         "0"
       ]

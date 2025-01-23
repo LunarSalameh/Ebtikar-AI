@@ -5,8 +5,11 @@ import { FaBookmark} from "react-icons/fa";
 import VideoResult from "../components/videoResult";
 // import videos from "../data/videos.json";
 import { useParams } from "react-router-dom";
+import { useSidebarSize } from "../hooks/sidebarSize";
 
 export default function UserProfile () {
+    const sidebarSize = useSidebarSize();
+
     const { id } = useParams();
 
     const [liked, setLiked] = useState(false);
@@ -31,12 +34,12 @@ export default function UserProfile () {
 
 
     return (
-        <div className="w-full min-h-screen pl-64 p-4 bg-light-background dark:bg-dark-background text-light-bodyText dark:text-dark-sideBarText">
+        <div className={`w-full min-h-screen ${sidebarSize} p-4 bg-light-background dark:bg-dark-background text-light-bodyText dark:text-dark-sideBarText`}>
             {/* user details */}
-            <div className="flex gap-6 flex-wrap px-8 py-2">
+            <div className="flex gap-6 flex-wrap px-8 py-2 max-sm:justify-center">
                 {/* profile picture */}
                 <div>
-                    <img src={user.profilePicture} alt="profile" className="w-48 h-48 rounded-full"/>
+                    <img src={user.profilePicture} alt="profile" className="w-48 h-48 max-sm:w-32 max-sm:h-32 rounded-full"/>
                 </div>
 
                 {/* details */}
@@ -58,17 +61,23 @@ export default function UserProfile () {
                 <div className="mt-12">
 
                     {/* liked and watched buttons  */}
-                    <div className="flex gap-6">
+                    <div className="flex gap-6  max-sm:gap-10 max-sm:justify-center">
                         <button className={`flex gap-2 items-center p-2 ${liked && 'focus:border-b-2'} ` }
                                 onClick={()=>{setLiked(true); setBookmark(false); setFilterType("liked")}} 
                                 id="liked">
-                            < IoIosHeart size={22}/> Liked Videos
+                            <div>
+                                < IoIosHeart size={22}/>
+                            </div> 
+                            <p className="max-sm:hidden">Liked Videos</p>
                         </button>
 
                         <button className={`flex gap-2 items-center p-2 ${bookmark && 'focus:border-b-2'} ` }
                                 onClick={()=> {setLiked(false); setBookmark(true); setFilterType("bookmarked")}}  
                                 id="saved">
-                        < FaBookmark size={22}/> Saved Videos
+                            <div>
+                                < FaBookmark size={22}/>
+                            </div>
+                            <p className="max-sm:hidden"> Saved Videos </p>
                         </button>
 
                     </div>
