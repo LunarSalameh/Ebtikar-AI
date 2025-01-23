@@ -1,37 +1,55 @@
-[
+{
+  "users": [
     {
-      "id": "101",
+      "id": "1",
       "fullName": "John Doe",
       "profilePicture": "https://randomuser.me/api/portraits/men/1.jpg",
-      "savedVideosIDs": [],
+      "savedVideosIDs": [
+        "3"
+      ],
       "likedVideosIDs": []
     },
     {
-      "id": "102",
+      "id": "2",
       "fullName": "Jane Smith",
       "profilePicture": "https://randomuser.me/api/portraits/women/2.jpg",
       "savedVideosIDs": [],
-      "likedVideosIDs": []
+      "likedVideosIDs": [
+        "2",
+        "3"
+      ]
     },
     {
-      "id": "103",
+      "id": "3",
       "fullName": "Alice Johnson",
-      "profilePicture": "https://randomuser.me/api/portraits/women/3.jpg",
-      "savedVideosIDs": [],
-      "likedVideosIDs": []
+      "profilePicture": "https://randomuser.me/api/portraits/women/8.jpg",
+      "savedVideosIDs": [
+        "1"
+      ],
+      "likedVideosIDs": [
+        "3",
+        "2"
+      ]
     },
     {
-      "id": "104",
+      "id": "4",
       "fullName": "Bob Brown",
       "profilePicture": "https://randomuser.me/api/portraits/men/4.jpg",
       "savedVideosIDs": [],
-      "likedVideosIDs": []
+      "likedVideosIDs": [
+        "0"
+      ]
     },
     {
-      "id": "105",
+      "id": "5",
       "fullName": "Charlie Davis",
-      "profilePicture": "https://randomuser.me/api/portraits/men/5.jpg",
-      "savedVideosIDs": [],
-      "likedVideosIDs": []
+      "profilePicture": "https://randomuser.me/api/portraits/men/9.jpg",
+      "savedVideosIDs": [
+        "3"
+      ],
+      "likedVideosIDs": [
+        "3"
+      ]
     }
   ]
+}

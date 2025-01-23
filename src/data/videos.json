@@ -1,41 +1,40 @@
-[
+{
+  "videos": [
     {
-      "id": "1",
+      "id": "0",
       "title": "Effective Leadership Tips",
       "description": "Learn essential leadership skills to excel in your role.",
-      "videoUrl": "./videos/Whygoodleadersmakeyoufeelsafe.mp4", 
+      "videoUrl": "/videos/Whygoodleadersmakeyoufeelsafe.mp4",
       "category": "Leadership",
-      "liked": 1,
-      "bookmarked": 0
+      "liked": 4,
+      "bookmarked": 2
+    },
+    {
+      "id": "1",
+      "title": "Time Management Hacks",
+      "description": "Boost productivity with these time management techniques.",
+      "videoUrl": "/videos/HowIManageMyTime.mp4",
+      "category": "Time Management",
+      "liked": 3,
+      "bookmarked": 3
     },
     {
       "id": "2",
-      "title": "Time Management Hacks",
-      "description": "Boost productivity with these time management techniques.",
-      "videoUrl": "./videos/HowIManageMyTime.mp4", 
-      "category": "Productivity",
-      "liked": 1,
-      "bookmarked": 0
-
-    },
-
-    {
-      "id": "3",
       "title": "What Is ICT?",
       "description": "ICT is one of the technology careers and studies that people choose along with Computer Science and Software Engineering ",
-      "videoUrl": "./videos/WhatIsICT.mp4",
+      "videoUrl": "/videos/WhatIsICT.mp4",
       "category": "Technology",
-      "liked": 0,
-      "bookmarked": 0
-
+      "liked": 2,
+      "bookmarked": 1
     },
     {
-      "id": "4",
+      "id": "3",
       "title": "Lets Talk About Education",
       "description": "Boost productivity with these time management techniques.",
-      "videoUrl": "./videos/LetsTalkAboutEducation.mp4", 
+      "videoUrl": "/videos/LetsTalkAboutEducation.mp4",
       "category": "Education",
-      "liked": 0,
-      "bookmarked": 0
+      "liked": 3,
+      "bookmarked": 2
     }
   ]
+}

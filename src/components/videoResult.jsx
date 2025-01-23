@@ -1,34 +1,55 @@
-import React from "react"
-import videos from "../data/videos.json"
+import React, { useState, useEffect } from "react";
+// import videos from "../data/videos.json";
 import { IoIosHeart } from "react-icons/io";
 
+export default function VideoResult({ category, search, id }) {
+    const [filteredVideos, setFilteredVideos] = useState([]);
+    const [videos, setVideos] = useState([]);
+    
+    useEffect(() => {
+        const fetchVideos = async () => {
+          try {
+              const response = await fetch(`http://localhost:3001/videos`);
+              if (!response.ok) {
+                  throw new Error('Network response was not ok');
+              }
+              const data = await response.json();
+              setVideos(data);
+              console.log("Fetched videos:", data.videos);
+          } catch (error) {
+              console.error('Error fetching videos:', error);
+          }
+        };
+        
+        fetchVideos();
+    }, []);
 
-export default function VideoResult({category, search}) {
+    useEffect(() => {
+        const filtered = videos.filter((video) => {
+            const matchesCategory = category ? video.category === category : true;
+            const matchesSearch = search ? video.title.toLowerCase().includes(search.toLowerCase()) : true;
+            const matchesId = id 
+            ? (Array.isArray(id) ? id.includes(video.id) : id === video.id) 
+            : true;
+            return matchesCategory && matchesSearch &&  matchesId;
+        });
+        setFilteredVideos(filtered);
+    }, [category, search , id,videos]);
+
     return (
         <div>
-            {category ? (
-                <h1>Category: {category}</h1>
-            ) : search ? (
-                <h1>Search: {search}</h1>
-            ) : (
-                <h1>All Videos</h1>
-            )}
-
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {videos.filter((video) => {
-                    const matchesCategory = category ? video.category === category : true;
-                    const matchesSearch = search ? video.title.toLowerCase().includes(search.toLowerCase()) : true;
-                    return matchesCategory && matchesSearch;
-                }).map((video, index) => (
+                {filteredVideos.map((video, index) => (
                     <div key={index} className="relative p-4 bg-light-cardBg dark:bg-dark-cardBg rounded-lg">
                         <div className="relative flex justify-center w-72 h-72 rounded-lg overflow-hidden">
-                            <video 
-                                className="object-cover w-full h-full transition-all duration-300 ease-in-out" 
+                            <video
+                                className="object-cover w-full h-full transition-all duration-300 ease-in-out"
                                 controls={false}
                                 muted={true}
                                 src={video.videoUrl}
+                                type="video/mp4"
+                                
                                 onMouseEnter={e => {
-                                    e.target.currentTime = 0;
                                     e.target.play();
                                 }}
                                 onMouseLeave={e => {
@@ -38,7 +59,7 @@ export default function VideoResult({category, search}) {
                             >
                             </video>
                             <div className="absolute bottom-2 left-2 z-10 p-2 rounded-full bg-white flex gap-1 items-center justify-center">
-                                <IoIosHeart size={22} className="text-light-interaction"/>
+                                <IoIosHeart size={22} className="text-light-interaction" />
                                 <span className="text-sm font-semibold text-light-interaction">{video.liked}</span>
                             </div>
                         </div>
@@ -48,5 +69,5 @@ export default function VideoResult({category, search}) {
                 ))}
             </div>
         </div>
-    )
+    );
 }

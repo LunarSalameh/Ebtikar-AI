@@ -17,7 +17,7 @@ export default function Home() {
         <div className="w-full pl-64 p-4 bg-light-background dark:bg-dark-background text-light-bodyText dark:text-dark-sideBarText">
 
             <div className="flex flex-col gap-4">
-            {videos.map((video, index) => (
+            {videos.videos.map((video, index) => (
                 <div id={`video-${index}`} key={index}>
                     <VideoCard video={video}  onVideoEnd={() => handleVideoEnd(index)} />
                 </div>
