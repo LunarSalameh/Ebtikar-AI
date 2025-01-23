@@ -7,7 +7,7 @@ module.exports = {
     extend: {},
     colors : {
       light: {
-        sideBarBg: '#B2C9BB',
+        sideBarBg: '#97A99E',
         sideBarText: '#EFF2F4',
         sideBarHover: '#C7D3CC',
         bodyText: '#000000',

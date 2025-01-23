@@ -177,9 +177,9 @@ export default function VideoCard({ video, onVideoEnd }) {
 
 
   return (
-    <div className="flex gap-4 h-[100vh] justify-center items-center relative" ref={containerRef}>
+    <div className="flex gap-4 h-[100vh] max-sm:h-[60vh] justify-center items-center relative" ref={containerRef}>
       {/* Video Player */}
-      <div className="text-center w-[80vh] h-[100vh]">
+      <div className="text-center w-[80vh] max-sm:w-full h-[100vh]   max-sm:h-64">
         <div
           className="rounded-xl h-full w-full overflow-hidden relative"
           onClick={handleVideoClick}
@@ -241,26 +241,26 @@ export default function VideoCard({ video, onVideoEnd }) {
         </div>
 
         {/* Video Title and Description */}
-        <div className="text-start w-[80vh] text-light-sideBarText">
-          <div className="absolute bottom-1.5 py-2 px-4 w-[80vh] bg-opacity-50 backdrop-blur-sm rounded-lg">
-            <h1 className="text-lg z-50 font-semibold">{video.title}</h1>
-            <h3 className="text-sm z-50 pl-1 pb-2">{video.description}</h3>
+        <div className="text-start w-[80vh]  max-sm:w-40  text-light-sideBarText">
+          <div className="absolute bottom-1.5 py-2 px-4 w-[80vh] max-sm:w-40  bg-opacity-50 backdrop-blur-sm rounded-lg">
+            <h1 className="text-lg max-sm:text-[14px] z-50 font-semibold">{video.title}</h1>
+            <h3 className="text-sm max-sm:text-[12px] z-50 pl-1 pb-2">{video.description}</h3>
           </div>
         </div>
       </div>
 
-      <div className="flex flex-col gap-2 h-full pb-4 justify-end">
+      <div className="flex flex-col gap-2 h-full pb-4 justify-end  max-sm:justify-center">
         {/* Like */}
           <div className="flex flex-col items-center">
-            <button className="p-2 bg-blue-500 text-white rounded-lg" 
+            <button className="p-2 rounded-lg max-sm:p-1" 
                   onClick={handleLikes}
                   tabIndex="0"
                   aria-label={liked ? "Unlike video" : "Like video"}
-                  // onKeyDown={(e) => {
-                  //   if (e.key === "Enter" || e.key === " ") {
-                  //     handleLikes()
-                  //   }
-                  // }}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      handleLikes()
+                    }
+                  }}
                   >
               <div className="bg-light-interaction rounded-full p-2">
                 { userLiked  ? <IoIosHeart size={30} color="black" /> : <IoIosHeartEmpty size={30} color="black" />}
